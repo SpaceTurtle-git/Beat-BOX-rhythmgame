@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c1eb00qp6ssas"]
+
+[ext_resource type="Script" uid="uid://dwsinhwbgioj7" path="res://scripts/main_scene.gd" id="1_2c62f"]
+[ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/midi/MidiPlayer.tscn" id="3_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://bksilprlijkms" path="res://scenes/key_listener.tscn" id="4_8mm7a"]
+[ext_resource type="PackedScene" uid="uid://5une6qed5o7b" path="res://scenes/falling_key.tscn" id="5_gubc5"]
+[ext_resource type="AudioStream" uid="uid://dg2elppjev2ot" path="res://tetris.mp3" id="5_rt2n2"]
+
+[node name="Main_Scene" type="Node2D" unique_id=489401334]
+script = ExtResource("1_2c62f")
+
+[node name="MidiPlayer" parent="." unique_id=1120515336 instance=ExtResource("3_gyfs4")]
+file = "res://testris.mid"
+volume_db = -80.0
+soundfont = "res://FM-Piano1 20190916.sf2"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=257675792]
+position = Vector2(640, 360)
+
+[node name="key_listener" parent="." unique_id=680940252 instance=ExtResource("4_8mm7a")]
+position = Vector2(490, 650)
+key_name = "left"
+
+[node name="key_listener2" parent="." unique_id=388252013 instance=ExtResource("4_8mm7a")]
+position = Vector2(590, 650)
+frame = 1
+key_name = "down"
+
+[node name="key_listener3" parent="." unique_id=2140152505 instance=ExtResource("4_8mm7a")]
+position = Vector2(690, 650)
+frame = 2
+key_name = "up"
+
+[node name="key_listener4" parent="." unique_id=1232754599 instance=ExtResource("4_8mm7a")]
+position = Vector2(790, 650)
+frame = 3
+key_name = "right"
+
+[node name="falling_key" parent="." unique_id=1255716195 instance=ExtResource("5_gubc5")]
+position = Vector2(490, -100)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1446077512]
+stream = ExtResource("5_rt2n2")
+
+[connection signal="midi_event" from="MidiPlayer" to="." method="_on_midi_player_midi_event"]

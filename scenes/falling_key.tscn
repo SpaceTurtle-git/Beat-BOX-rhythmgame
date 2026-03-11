@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://5une6qed5o7b"]
+
+[ext_resource type="Texture2D" uid="uid://dwua3gbff5wi6" path="res://arrows.webp" id="1_iweoq"]
+[ext_resource type="Script" uid="uid://db8pukeiasmud" path="res://scripts/falling_key.gd" id="2_dbpn1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbpn1"]
+size = Vector2(53, 55)
+
+[node name="falling_key" type="Sprite2D" unique_id=1255716195]
+texture = ExtResource("1_iweoq")
+hframes = 4
+vframes = 3
+frame = 4
+script = ExtResource("2_dbpn1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=733764435]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=946577193]
+position = Vector2(1.5, -5.5)
+shape = SubResource("RectangleShape2D_dbpn1")
